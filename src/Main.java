@@ -16,9 +16,12 @@ public class Main {
         MissionService.assignRocketToMission("Luna1", "Dragon 2");
 
         MissionService.deployRocket("Dragon 1");
+        MissionService.rapairRocket("Dragon 2");
 
         System.out.println(Database.rockets);
         System.out.println(Database.missions);
+
+        ReportingService.makeReport();
     }
 
     private static void initRockets() {

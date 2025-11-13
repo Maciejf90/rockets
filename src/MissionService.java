@@ -22,6 +22,25 @@ public class MissionService {
         }
     }
 
+    public static void deployRocket(String rocketName) {
+        Rocket rocket = findRocketByName(rocketName);
+        rocket.setRocketState(RocketState.IN_SPACE);
+        Database.missions.stream()
+                .filter(l -> l.getRockets().contains(rocket))
+                .findAny()
+                .ifPresent(l -> l.changeMissionStatus(MissionStatus.IN_PROGRESS));
+    }
+
+    public static void rapairRocket(String rocketName) {
+        Rocket rocket = findRocketByName(rocketName);
+        rocket.setRocketState(RocketState.IN_REPAIR);
+        Database.missions.stream()
+                .filter(l -> l.getRockets().contains(rocket))
+                .findAny()
+                .ifPresent(l -> l.changeMissionStatus(MissionStatus.PENDING));
+
+    }
+
     private static Mission findMissionByName(String missionName) {
         return Database.missions.stream()
                 .filter(m -> missionName.equals(m.getName()))
@@ -42,14 +61,5 @@ public class MissionService {
                         .filter(l -> l.getRockets().contains(rocketName))
                         .findAny()
                         .isEmpty();
-    }
-
-    public static void deployRocket(String rocketName) {
-        Rocket rocket = findRocketByName(rocketName);
-            rocket.setRocketState(RocketState.IN_SPACE);
-            Database.missions.stream()
-                    .filter(l -> l.getRockets().contains(rocket))
-                    .findAny()
-                    .ifPresent(l -> l.changeMissionStatus(MissionStatus.IN_PROGRESS));
     }
 }

@@ -38,7 +38,6 @@ public class MissionService {
                 .filter(l -> l.getRockets().contains(rocket))
                 .findAny()
                 .ifPresent(l -> l.changeMissionStatus(MissionStatus.PENDING));
-
     }
 
     private static Mission findMissionByName(String missionName) {
@@ -61,5 +60,18 @@ public class MissionService {
                         .filter(l -> l.getRockets().contains(rocketName))
                         .findAny()
                         .isEmpty();
+    }
+
+    public static void removeRocket(String rocketName) {
+        Rocket rocket = findRocketByName(rocketName);
+        Database.missions.stream()
+                .filter(l -> l.getRockets().contains(rocket))
+                .findAny()
+                .ifPresent(l -> {
+                    l.getRockets().remove(rocket);
+                    if (l.getRockets().isEmpty()) {
+                    l.changeMissionStatus(MissionStatus.ENDED);
+                    }
+                });
     }
 }

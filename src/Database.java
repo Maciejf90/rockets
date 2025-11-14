@@ -8,6 +8,9 @@ import java.util.TreeSet;
 
 public interface Database {
     HashSet<Rocket> rockets = new HashSet<>();
-    Set<Mission> missions = new TreeSet<>(Comparator.comparing(Mission::getName));
 
+    // I wanted the missions to be ordered by default on insert,
+    // but since we do ordering in the report, we could possibly make it a hashset.
+    // Also, hashset has better read performance, so in this case (reports) it would be better.
+    Set<Mission> missions = new TreeSet<>(Comparator.comparing(Mission::getName));
 }

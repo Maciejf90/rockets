@@ -9,16 +9,12 @@ public class Rocket {
         this.rocketState = RocketState.ON_GROUND;
     }
 
-    private String name;
+    private final String name;
 
     private RocketState rocketState;
 
     public String getName() {
         return name;
-    }
-
-    public RocketState getRocketState() {
-        return rocketState;
     }
 
     public void setRocketState(RocketState rocketState) {
@@ -39,9 +35,6 @@ public class Rocket {
 
     @Override
     public String toString() {
-        return "Rocket{" +
-                "name='" + name + '\'' +
-                ", rocketState=" + rocketState +
-                '}';
+        return name + " - " + rocketState.getValue();
     }
 }

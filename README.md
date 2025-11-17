@@ -16,7 +16,6 @@
 
 ### Further investigation/development
 - Prevent changing mission state to in progress even if there is one rocket in repair.
-- Make State and Status names more user-friendly.
 - Optimize report generation by making calculations in the DB.
 - Change order of assigned rockets in report feature.
-- Make Missions in Database a HashSet.
+- Make `Missions` in Database a `HashSet`.

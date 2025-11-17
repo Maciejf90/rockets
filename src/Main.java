@@ -8,6 +8,12 @@ public class Main {
         initRockets();
         initMissions();
 
+        initSampleData();
+
+        ReportingService.makeReport();
+    }
+
+    private static void initSampleData() {
         MissionService.assignRocketToMission("Luna1", "Dragon 1");
         MissionService.assignRocketToMission("Luna1", "Dragon 2");
         MissionService.assignRocketToMission("Luna2", "Polonez");
@@ -25,8 +31,6 @@ public class Main {
         MissionService.deployRocket("Falcon Heavy");
 
         MissionService.rapairRocket("Dragon 1");
-
-        ReportingService.makeReport();
     }
 
     private static void initMissions() {
